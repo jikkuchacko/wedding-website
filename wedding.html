@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jikku &amp; Pooja · A Garden Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --champagne:      #FAF4EC;
+  --champagne-deep: #F0E4D0;
+  --ivory:          #FDF8F3;
+  --blush:          #F5E6D6;
+
+  --forest:      #1A2E1F;
+  --forest-deep: #0D1A10;
+  --leaf:        #2D4A32;
+  --moss:        #4A5D3E;
+  --sage:        #7A8463;
+
+  --gold:       #C9956C;
+  --gold-light: #DDB899;
+  --gold-deep:  #A87050;
+  --brass:      #B8924A;
+
+  --shadow: rgba(13, 26, 16, 0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--champagne);
+  color: var(--forest);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 1.4rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(250, 244, 236, 0.82);
+  border-bottom: 1px solid rgba(201, 149, 108, 0.14);
+  transition: padding 0.4s ease, box-shadow 0.4s ease;
+}
+
+.nav-mark {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: var(--forest);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.nav-mark .amp { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--forest);
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; left: 50%;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--forest);
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--forest-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem 2rem 6rem;
+}
+
+/* Atmospheric glow layers */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 42%, rgba(201, 149, 108, 0.16) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 70% at 15% 100%, rgba(45, 74, 50, 0.45) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 70% at 85% 100%, rgba(45, 74, 50, 0.45) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 45% at 50% 0%,  rgba(13, 26, 16, 0.9) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Grain overlay */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* Botanical leaves */
+.hero-leaf { position: absolute; pointer-events: none; z-index: 1; }
+.hero-leaf-1 { top: -8%;  left: -10%; width: 42%; transform: rotate(-25deg); opacity: 0.16; color: var(--leaf); }
+.hero-leaf-2 { top: -5%;  right: -14%;width: 48%; transform: rotate(18deg);  opacity: 0.12; color: var(--moss); }
+.hero-leaf-3 { bottom:-12%;left: -8%; width: 38%; transform: rotate(38deg);  opacity: 0.13; color: var(--leaf); }
+.hero-leaf-4 { bottom: -5%;right: -6%;width: 32%; transform: rotate(-28deg); opacity: 0.11; color: var(--sage); }
+.hero-leaf-5 { top: 35%;  left: 4%;  width: 14%; transform: rotate(-50deg); opacity: 0.09; color: var(--gold); }
+.hero-leaf-6 { bottom:28%;right: 6%; width: 12%; transform: rotate(65deg);  opacity: 0.10; color: var(--gold); }
+
+/* Floating petals */
+.petals { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.petal {
+  position: absolute;
+  bottom: -5%;
+  border-radius: 50% 5% 50% 5%;
+  background: rgba(201, 149, 108, 0.28);
+  animation: floatPetal linear infinite;
+}
+.petal:nth-child(1)  { left:8%;  width:6px;  height:9px;  animation-duration:13s; animation-delay:0s;   opacity:.35; }
+.petal:nth-child(2)  { left:20%; width:9px;  height:13px; animation-duration:17s; animation-delay:2.5s; opacity:.25; }
+.petal:nth-child(3)  { left:33%; width:5px;  height:8px;  animation-duration:11s; animation-delay:5s;   opacity:.30; }
+.petal:nth-child(4)  { left:47%; width:10px; height:14px; animation-duration:19s; animation-delay:1s;   opacity:.20; }
+.petal:nth-child(5)  { left:58%; width:7px;  height:10px; animation-duration:14s; animation-delay:7s;   opacity:.28; }
+.petal:nth-child(6)  { left:70%; width:6px;  height:9px;  animation-duration:16s; animation-delay:3.5s; opacity:.32; }
+.petal:nth-child(7)  { left:81%; width:8px;  height:12px; animation-duration:10s; animation-delay:9s;   opacity:.22; }
+.petal:nth-child(8)  { left:91%; width:5px;  height:7px;  animation-duration:15s; animation-delay:4s;   opacity:.30; }
+.petal:nth-child(9)  { left:14%; width:11px; height:15px; animation-duration:21s; animation-delay:6s;   opacity:.18; }
+.petal:nth-child(10) { left:53%; width:6px;  height:9px;  animation-duration:9s;  animation-delay:11s;  opacity:.26; }
+
+@keyframes floatPetal {
+  0%   { transform: translateY(0)      rotate(0deg)   translateX(0);     opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translateY(-52vh)  rotate(190deg) translateX(28px); }
+  92%  { opacity: 0.4; }
+  100% { transform: translateY(-108vh) rotate(380deg) translateX(-18px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .petal { animation: none; opacity: 0; }
+  .hero-leaf { animation: none !important; }
+}
+
+/* Hero content */
+.hero-inner {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  max-width: 820px;
+  opacity: 0;
+  animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  font-size: 0.66rem;
+  letter-spacing: 0.58em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  width: 40px; height: 1px;
+  opacity: 0.6;
+}
+.hero-eyebrow::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+.hero-eyebrow::after  { background: linear-gradient(90deg, var(--gold), transparent); }
+
+/* Script names — the showstopper */
+.hero-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(5.5rem, 19vw, 14rem);
+  line-height: 1;
+  color: var(--champagne);
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 0 80px rgba(201, 149, 108, 0.22),
+    0 2px 24px rgba(13, 26, 16, 0.55);
+}
+.hero-amp {
+  display: block;
+  font-size: 0.48em;
+  color: var(--gold-light);
+  line-height: 0.75;
+  margin: -0.05em 0;
+  opacity: 0.88;
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  color: rgba(250, 244, 236, 0.58);
+  margin: 2rem auto;
+  max-width: 460px;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+/* Glass pill */
+.hero-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 2.2rem;
+  padding: 0.95rem 2.2rem;
+  background: rgba(201, 149, 108, 0.09);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 149, 108, 0.28);
+  border-radius: 100px;
+}
+.hero-meta-item {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  font-weight: 400;
+  opacity: 0.82;
+}
+.hero-meta-divider {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.65;
+}
+
+/* Countdown */
+.hero-countdown {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.8rem;
+  justify-content: center;
+  margin-top: 2.8rem;
+  opacity: 0;
+  animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+.cd-unit { text-align: center; }
+.cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--champagne);
+  line-height: 1;
+  font-weight: 300;
+  display: block;
+  min-width: 3ch;
+  font-feature-settings: "tnum";
+}
+.cd-label {
+  font-size: 0.56rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(250, 244, 236, 0.38);
+  margin-top: 0.45rem;
+  font-weight: 400;
+  display: block;
+}
+.cd-sep {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  opacity: 0.35;
+  margin-top: 0.15em;
+  line-height: 1;
+}
+
+/* Scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  opacity: 0;
+  animation: fadeUp 2s ease 1.8s forwards;
+}
+.scroll-cue-text {
+  font-size: 0.58rem;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: rgba(250, 244, 236, 0.3);
+  font-weight: 400;
+}
+.scroll-cue-line {
+  width: 1px; height: 38px;
+  background: linear-gradient(180deg, rgba(201, 149, 108, 0.5) 0%, transparent 100%);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.55; transform: scaleY(1); }
+  50%       { opacity: 0.15; transform: scaleY(0.45); }
+}
+
+/* ═══════════════════════════════════════
+   SECTION COMMON
+═══════════════════════════════════════ */
+section { position: relative; padding: 9rem 3rem; }
+
+.section-mark {
+  font-size: 0.63rem;
+  letter-spacing: 0.56em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-weight: 400;
+}
+.section-mark::before,
+.section-mark::after {
+  content: '';
+  flex: 1;
+  max-width: 38px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.38;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  text-align: center;
+  color: var(--forest);
+  margin-bottom: 1rem;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-subtitle {
+  text-align: center;
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  color: var(--moss);
+  font-size: 1.12rem;
+  max-width: 490px;
+  margin: 0 auto 5rem;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* Ornamental divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1.2rem auto 4.5rem;
+  max-width: 260px;
+}
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  opacity: 0.32;
+}
+.ornament-line-l { background: linear-gradient(90deg, transparent, var(--gold)); }
+.ornament-line-r { background: linear-gradient(90deg, var(--gold), transparent); }
+.ornament-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+.ornament-dot {
+  width: 3px; height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.42;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   DETAILS
+═══════════════════════════════════════ */
+.details {
+  background: var(--forest-deep);
+  color: var(--champagne);
+  overflow: hidden;
+}
+.details::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 65% 50% at 25% 50%, rgba(201, 149, 108, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 50% at 75% 50%, rgba(201, 149, 108, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 70% at 50% 0%,  rgba(45, 74, 50, 0.28) 0%, transparent 50%);
+  pointer-events: none;
+}
+.details-leaf { position: absolute; pointer-events: none; opacity: 0.07; color: var(--gold); }
+.details-leaf-1 { top: -5%;   left: -10%; width: 35%; transform: rotate(-30deg); }
+.details-leaf-2 { bottom:-10%;right: -8%; width: 30%; transform: rotate(45deg); }
+
+.details .section-mark        { color: var(--gold-light); }
+.details .section-mark::before,
+.details .section-mark::after  { background: var(--gold-light); }
+.details .section-title        { color: var(--champagne); }
+.details .section-title em     { color: var(--gold-light); }
+.details .section-subtitle     { color: rgba(250, 244, 236, 0.52); }
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
+  max-width: 660px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Glassmorphism cards */
+.detail-card {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: rgba(201, 149, 108, 0.055);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(201, 149, 108, 0.18);
+  transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.detail-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 149, 108, 0.07) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+/* top accent */
+.detail-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transform: translateX(-50%);
+  transition: width 0.55s ease;
+}
+.detail-card:hover {
+  border-color: rgba(201, 149, 108, 0.38);
+  transform: translateY(-7px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(201, 149, 108, 0.08);
+}
+.detail-card:hover::before { opacity: 1; }
+.detail-card:hover::after  { width: 55%; }
+
+.detail-icon {
+  color: var(--gold-light);
+  margin: 0 auto 1.8rem;
+  display: block;
+  opacity: 0.75;
+}
+.detail-label {
+  font-size: 0.63rem;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+  opacity: 0.78;
+}
+.detail-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  color: var(--champagne);
+  line-height: 1.28;
+  margin-bottom: 0.6rem;
+  font-weight: 300;
+}
+.detail-sub {
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  color: rgba(250, 244, 236, 0.4);
+  font-size: 0.9rem;
+}
+
+/* ═══════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════ */
+.gallery { background: var(--champagne); overflow: hidden; }
+
+.gallery-bg-leaf {
+  position: absolute;
+  right: -4%; top: 8%;
+  width: 18%;
+  opacity: 0.055;
+  color: var(--forest);
+}
+
+.gallery-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3 / 4;
+  background: var(--champagne-deep);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: brightness(0.96) saturate(0.95);
+}
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.02) saturate(1.05);
+}
+
+/* Dark gradient on hover */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(13, 26, 16, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+/* Inner frame on hover */
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201, 149, 108, 0);
+  z-index: 2;
+  transition: border-color 0.5s ease;
+  pointer-events: none;
+}
+.gallery-item:hover::before { border-color: rgba(201, 149, 108, 0.48); }
+
+/* Number label */
+.gallery-num {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
+  z-index: 3;
+  color: var(--champagne);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.4s ease;
+}
+.gallery-item:hover .gallery-num { opacity: 0.65; transform: translateY(0); }
+
+.gallery-note {
+  text-align: center;
+  margin-top: 3rem;
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  color: var(--sage);
+  font-size: 0.92rem;
+  opacity: 0.75;
+}
+
+/* ═══════════════════════════════════════
+   VENUE
+═══════════════════════════════════════ */
+.venue { background: var(--ivory); overflow: hidden; }
+
+.venue-leaf {
+  position: absolute;
+  bottom: -8%; left: -6%;
+  width: 22%;
+  opacity: 0.07;
+  transform: rotate(-15deg);
+  color: var(--forest);
+}
+
+.venue-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.venue-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  color: var(--forest);
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  font-weight: 400;
+}
+.venue-info h3 em { font-style: italic; color: var(--gold); }
+
+.venue-info p {
+  color: var(--moss);
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.88;
+}
+
+.venue-address {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--forest);
+  font-size: 1.08rem;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  line-height: 1.72;
+  opacity: 0.82;
+}
+
+.venue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.2rem;
+  background: var(--forest);
+  color: var(--champagne);
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: 1px solid var(--forest);
+  transition: all 0.35s ease;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.venue-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--forest);
+}
+.venue-btn svg { transition: transform 0.3s ease; }
+.venue-btn:hover svg { transform: translateX(5px); }
+
+.venue-map {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 6px rgba(13, 26, 16, 0.04),
+    0 22px 65px rgba(13, 26, 16, 0.1),
+    0 0 0 1px rgba(201, 149, 108, 0.11);
+}
+.venue-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0.45) sepia(0.18) saturate(0.85) brightness(0.97);
+  transition: filter 0.65s ease;
+}
+.venue-map:hover iframe {
+  filter: grayscale(0) sepia(0) saturate(1) brightness(1);
+}
+.venue-map-tag {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  background: var(--champagne);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.33em;
+  text-transform: uppercase;
+  color: var(--forest);
+  font-weight: 500;
+  z-index: 2;
+  box-shadow: 0 2px 12px rgba(13, 26, 16, 0.08);
+}
+
+/* ═══════════════════════════════════════
+   RSVP
+═══════════════════════════════════════ */
+.rsvp {
+  background: var(--forest-deep);
+  color: var(--champagne);
+  overflow: hidden;
+}
+.rsvp::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 28%, rgba(201, 149, 108, 0.09) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 70% at 8%  85%, rgba(45, 74, 50, 0.32) 0%, transparent 40%),
+    radial-gradient(ellipse 55% 70% at 92% 85%, rgba(45, 74, 50, 0.32) 0%, transparent 40%);
+  pointer-events: none;
+}
+.rsvp-leaf { position: absolute; pointer-events: none; opacity: 0.07; color: var(--gold); }
+.rsvp-leaf-1 { top: -5%;   right: -10%; width: 38%; transform: rotate(20deg); }
+.rsvp-leaf-2 { bottom: -8%;left: -8%;   width: 32%; transform: rotate(-30deg); }
+
+.rsvp .section-mark       { color: var(--gold-light); }
+.rsvp .section-mark::before,
+.rsvp .section-mark::after { background: var(--gold-light); }
+.rsvp .section-title       { color: var(--champagne); }
+.rsvp .section-title em    { color: var(--gold-light); }
+.rsvp .section-subtitle    { color: rgba(250, 244, 236, 0.52); }
+
+/* Glass form wrapper */
+.rsvp-form-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 149, 108, 0.14);
+  padding: 3.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.form-field { position: relative; }
+.form-field.full { grid-column: 1 / -1; }
+
+.form-field label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(250, 244, 236, 0.42);
+  margin-bottom: 0.7rem;
+  font-weight: 400;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(250, 244, 236, 0.14);
+  color: var(--champagne);
+  padding: 0.7rem 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+.form-field textarea { resize: none; min-height: 85px; line-height: 1.6; }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus { border-bottom-color: var(--gold-light); }
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(250, 244, 236, 0.18);
+  font-style: italic;
+}
+
+.form-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DDB899' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.3rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+.form-field select option { background: var(--forest); color: var(--champagne); }
+
+.rsvp-radio-group { display: flex; gap: 2.5rem; margin-top: 1rem; }
+.rsvp-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(250, 244, 236, 0.72);
+  transition: color 0.3s ease;
+}
+.rsvp-radio:hover { color: var(--gold-light); }
+
+.rsvp-radio input {
+  appearance: none;
+  width: 16px; height: 16px;
+  border: 1px solid rgba(250, 244, 236, 0.28);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  margin: 0;
+  flex-shrink: 0;
+}
+.rsvp-radio input:checked { border-color: var(--gold-light); }
+.rsvp-radio input:checked::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--gold-light);
+  border-radius: 50%;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 2.5rem;
+  padding: 1.2rem;
+  background: var(--gold);
+  color: var(--forest-deep);
+  border: 1px solid var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+.submit-btn:hover {
+  background: transparent;
+  color: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+/* Success */
+.rsvp-success {
+  display: none;
+  text-align: center;
+  padding: 4.5rem 2rem;
+  max-width: 620px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 149, 108, 0.18);
+}
+.rsvp-success.show { display: block; }
+
+.rsvp-success-icon { margin-bottom: 2rem; opacity: 0.65; color: var(--gold-light); }
+.rsvp-success h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.8rem;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+.rsvp-success p {
+  color: rgba(250, 244, 236, 0.7);
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.72;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: var(--champagne);
+  padding: 5rem 2rem 3.5rem;
+  text-align: center;
+  position: relative;
+  border-top: 1px solid rgba(201, 149, 108, 0.11);
+  overflow: hidden;
+}
+.footer-leaf {
+  position: absolute;
+  bottom: -5%; right: -3%;
+  width: 12%;
+  opacity: 0.07;
+  color: var(--forest);
+  transform: rotate(-20deg);
+}
+
+.footer-ornament {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.footer-line {
+  width: 55px; height: 1px;
+  opacity: 0.36;
+}
+.footer-line-l { background: linear-gradient(90deg, transparent, var(--gold)); }
+.footer-line-r { background: linear-gradient(90deg, var(--gold), transparent); }
+
+.footer-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.2rem;
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+.footer-names .amp { color: var(--gold); }
+
+.footer-date {
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  color: var(--moss);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.65;
+}
+.footer-note {
+  font-size: 0.58rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.stagger-1 { transition-delay: 0.10s; }
+.stagger-2 { transition-delay: 0.22s; }
+.stagger-3 { transition-delay: 0.34s; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    background: rgba(250, 244, 236, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(201, 149, 108, 0.12);
+  }
+  .nav-toggle { display: block; }
+
+  .hero { padding: 7rem 1.5rem 5rem; }
+  .hero-names { font-size: clamp(4.5rem, 20vw, 7rem); }
+  .hero-meta { flex-direction: column; gap: 0.6rem; padding: 1.2rem 1.8rem; border-radius: 20px; }
+  .hero-meta-divider { display: none; }
+  .hero-countdown { gap: 1.2rem; }
+  .scroll-cue { display: none; }
+
+  section { padding: 5rem 1.5rem; }
+
+  .details-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .venue-content { grid-template-columns: 1fr; gap: 3rem; }
+  .venue-map { height: 380px; }
+
+  .rsvp-form-wrap { padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .rsvp-radio-group { flex-direction: column; gap: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Botanical SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="monstera" viewBox="0 0 200 240">
+      <g fill="currentColor">
+        <path d="M100 235 Q100 180 105 140 Q108 110 102 80 Q98 50 100 20" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.7"/>
+        <path d="M100 20 Q70 25 50 45 Q35 65 30 90 Q25 70 20 85 Q35 95 50 90 Q55 85 65 80 Q55 100 60 115 Q70 105 85 95 Q75 115 80 130 Q92 118 100 100 Q100 60 100 20Z" opacity="0.85"/>
+        <path d="M100 20 Q130 25 150 45 Q165 65 170 90 Q175 70 180 85 Q165 95 150 90 Q145 85 135 80 Q145 100 140 115 Q130 105 115 95 Q125 115 120 130 Q108 118 100 100 Q100 60 100 20Z" opacity="0.85"/>
+        <path d="M100 80 Q75 95 60 120 Q45 140 40 165 Q35 145 28 158 Q42 170 58 165 Q60 158 70 152 Q60 175 65 188 Q75 178 88 165 Q80 188 85 200 Q95 188 100 170 Q100 130 100 80Z" opacity="0.75"/>
+        <path d="M100 80 Q125 95 140 120 Q155 140 160 165 Q165 145 172 158 Q158 170 142 165 Q140 158 130 152 Q140 175 135 188 Q125 178 112 165 Q120 188 115 200 Q105 188 100 170 Q100 130 100 80Z" opacity="0.75"/>
+      </g>
+    </symbol>
+    <symbol id="palm" viewBox="0 0 200 240">
+      <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M100 240 Q102 180 100 120 Q98 70 100 20" stroke-width="2" opacity="0.6"/>
+        <g opacity="0.8">
+          <path d="M100 30 Q50 35 20 65 Q35 50 60 50 Q80 48 95 40"/>
+          <path d="M100 30 Q150 35 180 65 Q165 50 140 50 Q120 48 105 40"/>
+          <path d="M100 60 Q40 70 10 110 Q30 88 60 85 Q85 82 98 70"/>
+          <path d="M100 60 Q160 70 190 110 Q170 88 140 85 Q115 82 102 70"/>
+          <path d="M100 95 Q35 110 5 160 Q30 130 60 125 Q85 122 98 105"/>
+          <path d="M100 95 Q165 110 195 160 Q170 130 140 125 Q115 122 102 105"/>
+          <path d="M100 130 Q40 150 20 200 Q40 175 65 170 Q88 165 98 145"/>
+          <path d="M100 130 Q160 150 180 200 Q160 175 135 170 Q112 165 102 145"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="frond" viewBox="0 0 200 240">
+      <g fill="currentColor" stroke="currentColor" stroke-width="0.8" stroke-linecap="round">
+        <path d="M100 240 Q105 180 102 100 Q100 50 100 10" stroke-width="2" fill="none" opacity="0.7"/>
+        <g opacity="0.85">
+          <ellipse cx="75"  cy="60"  rx="22" ry="8"  transform="rotate(-50 75  60)"/>
+          <ellipse cx="125" cy="60"  rx="22" ry="8"  transform="rotate( 50 125 60)"/>
+          <ellipse cx="65"  cy="90"  rx="26" ry="9"  transform="rotate(-45 65  90)"/>
+          <ellipse cx="135" cy="90"  rx="26" ry="9"  transform="rotate( 45 135 90)"/>
+          <ellipse cx="58"  cy="125" rx="30" ry="10" transform="rotate(-40 58  125)"/>
+          <ellipse cx="142" cy="125" rx="30" ry="10" transform="rotate( 40 142 125)"/>
+          <ellipse cx="55"  cy="160" rx="32" ry="10" transform="rotate(-35 55  160)"/>
+          <ellipse cx="145" cy="160" rx="32" ry="10" transform="rotate( 35 145 160)"/>
+          <ellipse cx="58"  cy="195" rx="30" ry="9"  transform="rotate(-30 58  195)"/>
+          <ellipse cx="142" cy="195" rx="30" ry="9"  transform="rotate( 30 142 195)"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-mark">J <span class="amp">&amp;</span> P</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#details">The Day</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#venue">Venue</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="3" y1="6"  x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-leaf hero-leaf-1" aria-hidden="true"><use href="#monstera"/></svg>
+  <svg class="hero-leaf hero-leaf-2" aria-hidden="true"><use href="#palm"/></svg>
+  <svg class="hero-leaf hero-leaf-3" aria-hidden="true"><use href="#frond"/></svg>
+  <svg class="hero-leaf hero-leaf-4" aria-hidden="true"><use href="#monstera"/></svg>
+  <svg class="hero-leaf hero-leaf-5" aria-hidden="true"><use href="#frond"/></svg>
+  <svg class="hero-leaf hero-leaf-6" aria-hidden="true"><use href="#palm"/></svg>
+
+  <div class="petals" aria-hidden="true">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Two hearts, one journey</div>
+    <h1 class="hero-names">
+      Jikku
+      <span class="hero-amp">&amp;</span>
+      Pooja
+    </h1>
+    <p class="hero-tagline">
+      Two hearts entwined like vines in a garden &mdash;<br>
+      we invite you to celebrate where love takes root.
+    </p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">16 August 2026</span>
+      <span class="hero-meta-divider" aria-hidden="true"></span>
+      <span class="hero-meta-item">7:00 PM</span>
+      <span class="hero-meta-divider" aria-hidden="true"></span>
+      <span class="hero-meta-item">Singapore</span>
+    </div>
+
+    <div class="hero-countdown" id="countdown" aria-label="Countdown to the wedding">
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-days">—</span>
+        <span class="cd-label">Days</span>
+      </div>
+      <span class="cd-sep" aria-hidden="true">·</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-hours">—</span>
+        <span class="cd-label">Hours</span>
+      </div>
+      <span class="cd-sep" aria-hidden="true">·</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-minutes">—</span>
+        <span class="cd-label">Mins</span>
+      </div>
+      <span class="cd-sep" aria-hidden="true">·</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-seconds">—</span>
+        <span class="cd-label">Secs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span class="scroll-cue-text">Scroll</span>
+    <span class="scroll-cue-line"></span>
+  </div>
+</section>
+
+
+<!-- DETAILS -->
+<section class="details" id="details">
+  <svg class="details-leaf details-leaf-1" aria-hidden="true"><use href="#palm"/></svg>
+  <svg class="details-leaf details-leaf-2" aria-hidden="true"><use href="#monstera"/></svg>
+
+  <div class="reveal">
+    <div class="section-mark">The Day</div>
+    <h2 class="section-title">When we <em>say I do</em></h2>
+    <p class="section-subtitle">Mark your calendar for a day of love, joy, and celebration</p>
+  </div>
+
+  <div class="details-grid">
+    <div class="detail-card reveal stagger-1">
+      <svg class="detail-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="1"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8"  y1="2" x2="8"  y2="6"/>
+        <line x1="3"  y1="10" x2="21" y2="10"/>
+      </svg>
+      <div class="detail-label">The Date</div>
+      <div class="detail-value">Sunday<br>16 August 2026</div>
+      <div class="detail-sub">Save the day</div>
+    </div>
+
+    <div class="detail-card reveal stagger-2">
+      <svg class="detail-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <polyline points="12 7 12 12 15 14"/>
+      </svg>
+      <div class="detail-label">The Hour</div>
+      <div class="detail-value">7:00<br>PM</div>
+      <div class="detail-sub">Reception begins</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <svg class="gallery-bg-leaf" aria-hidden="true"><use href="#frond"/></svg>
+
+  <div class="reveal">
+    <div class="section-mark">Moments</div>
+    <h2 class="section-title">Our <em>story</em></h2>
+    <div class="ornament" aria-hidden="true">
+      <span class="ornament-line ornament-line-l"></span>
+      <span class="ornament-dot"></span>
+      <span class="ornament-diamond"></span>
+      <span class="ornament-dot"></span>
+      <span class="ornament-line ornament-line-r"></span>
+    </div>
+    <p class="section-subtitle" style="margin-top: -1.5rem;">A small collection of our favourite memories</p>
+  </div>
+
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="photos/photo1.jpg" alt="Jikku and Pooja — a cherished moment" loading="lazy">
+      <div class="gallery-overlay" aria-hidden="true"></div>
+      <span class="gallery-num" aria-hidden="true">01</span>
+    </div>
+    <div class="gallery-item">
+      <img src="photos/photo2.jpg" alt="A moment together" loading="lazy">
+      <div class="gallery-overlay" aria-hidden="true"></div>
+      <span class="gallery-num" aria-hidden="true">02</span>
+    </div>
+    <div class="gallery-item">
+      <img src="photos/photo3.jpg" alt="A moment together" loading="lazy">
+      <div class="gallery-overlay" aria-hidden="true"></div>
+      <span class="gallery-num" aria-hidden="true">03</span>
+    </div>
+    <div class="gallery-item">
+      <img src="photos/photo4.jpg" alt="A moment together" loading="lazy">
+      <div class="gallery-overlay" aria-hidden="true"></div>
+      <span class="gallery-num" aria-hidden="true">04</span>
+    </div>
+    <div class="gallery-item">
+      <img src="photos/photo5.jpg" alt="A moment together" loading="lazy">
+      <div class="gallery-overlay" aria-hidden="true"></div>
+      <span class="gallery-num" aria-hidden="true">05</span>
+    </div>
+    <div class="gallery-item">
+      <img src="photos/photo6.jpg" alt="A moment together" loading="lazy">
+      <div class="gallery-overlay" aria-hidden="true"></div>
+      <span class="gallery-num" aria-hidden="true">06</span>
+    </div>
+  </div>
+  <p class="gallery-note reveal">More memories to be made &mdash; together</p>
+</section>
+
+
+<!-- VENUE -->
+<section class="venue" id="venue">
+  <svg class="venue-leaf" aria-hidden="true"><use href="#monstera"/></svg>
+
+  <div class="reveal">
+    <div class="section-mark">The Place</div>
+    <h2 class="section-title">Where we <em>celebrate</em></h2>
+    <div class="ornament" style="margin-bottom: 5rem;" aria-hidden="true">
+      <span class="ornament-line ornament-line-l"></span>
+      <span class="ornament-dot"></span>
+      <span class="ornament-diamond"></span>
+      <span class="ornament-dot"></span>
+      <span class="ornament-line ornament-line-r"></span>
+    </div>
+  </div>
+
+  <div class="venue-content reveal">
+    <div class="venue-info">
+      <h3>The Istana <em>Ballroom</em></h3>
+      <p>
+        Join us for the wedding reception as we dine, dance, and celebrate
+        surrounded by the people who matter most.
+      </p>
+      <div class="venue-address">
+        The Istana Ballroom, KINEX<br>
+        11 Tanjong Katong Rd<br>
+        Singapore 437157
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=11+Tanjong+Katong+Rd+Singapore+437157"
+         target="_blank" rel="noopener noreferrer" class="venue-btn">
+        Open in Maps
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="venue-map">
+      <span class="venue-map-tag">The venue</span>
+      <iframe
+        src="https://www.google.com/maps?q=11+Tanjong+Katong+Rd+Singapore+437157&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Wedding venue — The Istana Ballroom, Singapore">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- RSVP -->
+<section class="rsvp" id="rsvp">
+  <svg class="rsvp-leaf rsvp-leaf-1" aria-hidden="true"><use href="#frond"/></svg>
+  <svg class="rsvp-leaf rsvp-leaf-2" aria-hidden="true"><use href="#palm"/></svg>
+
+  <div class="reveal">
+    <div class="section-mark">Kindly Reply</div>
+    <h2 class="section-title">Will you <em>join us?</em></h2>
+    <p class="section-subtitle">
+      Your presence would mean the world.<br>
+      Please respond by 15 January 2026.
+    </p>
+  </div>
+
+  <div class="rsvp-form-wrap reveal" id="rsvpFormWrap">
+    <form class="rsvp-form" id="rsvpForm" onsubmit="handleRsvp(event)" novalidate>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="Your given name" required autocomplete="given-name">
+        </div>
+        <div class="form-field">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Your family name" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field full">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="So we can stay in touch" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field full">
+          <label>Will you be joining us?</label>
+          <div class="rsvp-radio-group">
+            <label class="rsvp-radio">
+              <input type="radio" name="attending" value="yes" checked>
+              <span>Joyfully accepts</span>
+            </label>
+            <label class="rsvp-radio">
+              <input type="radio" name="attending" value="no">
+              <span>Regretfully declines</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="guests">Number of guests</label>
+          <select id="guests">
+            <option value="1">Just me</option>
+            <option value="2">Two of us</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="meal">Meal preference</label>
+          <select id="meal">
+            <option value="standard">Standard</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="gluten-free">Gluten-free</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field full">
+          <label for="message">A note to the couple (optional)</label>
+          <textarea id="message" placeholder="Something kind, something funny, anything at all"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Send Reply</button>
+    </form>
+  </div>
+
+  <div class="rsvp-success" id="rsvpSuccess">
+    <div class="rsvp-success-icon">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+    <h3>Thank you</h3>
+    <p>
+      Your reply has been received with joy.<br>
+      We can&rsquo;t wait to celebrate with you.
+    </p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <svg class="footer-leaf" aria-hidden="true"><use href="#frond"/></svg>
+
+  <div class="footer-ornament" aria-hidden="true">
+    <span class="footer-line footer-line-l"></span>
+    <svg width="18" height="22" viewBox="0 0 200 240" style="color:var(--gold);opacity:0.55"><use href="#monstera"/></svg>
+    <span class="footer-line footer-line-r"></span>
+  </div>
+
+  <div class="footer-names">Jikku <span class="amp">&amp;</span> Pooja</div>
+  <div class="footer-date">16 &middot; 08 &middot; 2026 &nbsp;&middot;&nbsp; Singapore</div>
+  <p class="footer-note">Together forever begins here</p>
+</footer>
+
+
+<script>
+/* ── Countdown timer ───────────────────────────────── */
+(function () {
+  const wedding = new Date('2026-08-16T19:00:00+08:00');
+  const els = {
+    days:    document.getElementById('cd-days'),
+    hours:   document.getElementById('cd-hours'),
+    minutes: document.getElementById('cd-minutes'),
+    seconds: document.getElementById('cd-seconds'),
+  };
+
+  function pad(n, w) { return String(n).padStart(w, '0'); }
+
+  function tick() {
+    const diff = wedding - Date.now();
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<p style="font-family:\'Great Vibes\',cursive;font-size:2.2rem;color:var(--gold-light)">Today is the day!</p>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+    els.days.textContent    = pad(d, 3);
+    els.hours.textContent   = pad(h, 2);
+    els.minutes.textContent = pad(m, 2);
+    els.seconds.textContent = pad(s, 2);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── Scroll reveal ─────────────────────────────────── */
+const revealObserver = new IntersectionObserver(
+  (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.1, rootMargin: '0px 0px -48px 0px' }
+);
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── RSVP submit ───────────────────────────────────── */
+function handleRsvp(e) {
+  e.preventDefault();
+  const data = {
+    firstName: document.getElementById('firstName').value,
+    lastName:  document.getElementById('lastName').value,
+    email:     document.getElementById('email').value,
+    attending: document.querySelector('input[name="attending"]:checked').value,
+    guests:    document.getElementById('guests').value,
+    meal:      document.getElementById('meal').value,
+    message:   document.getElementById('message').value,
+    timestamp: new Date().toISOString(),
+  };
+  console.log('RSVP submitted:', data);
+
+  document.getElementById('rsvpFormWrap').style.display = 'none';
+  const success = document.getElementById('rsvpSuccess');
+  success.classList.add('show');
+  setTimeout(() => success.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+}
+
+/* ── Mobile nav ────────────────────────────────────── */
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ── Nav shrink + hero leaf parallax ───────────────── */
+const heroLeaves  = Array.from(document.querySelectorAll('.hero-leaf'));
+const initAngles  = heroLeaves.map(l => {
+  const m = (l.style.transform || '').match(/rotate\(([^)]+)\)/);
+  return m ? m[1] : '0deg';
+});
+const nav = document.getElementById('mainNav');
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+
+    heroLeaves.forEach((leaf, i) => {
+      const speed = 0.07 + i * 0.025;
+      leaf.style.transform = `translateY(${y * speed}px) rotate(${initAngles[i]})`;
+    });
+
+    if (y > 55) {
+      nav.style.padding   = '0.85rem 3rem';
+      nav.style.boxShadow = '0 2px 28px rgba(13,26,16,0.07)';
+    } else {
+      nav.style.padding   = '1.4rem 3rem';
+      nav.style.boxShadow = 'none';
+    }
+
+    ticking = false;
+  });
+});
+</script>
+
+</body>
+</html>
