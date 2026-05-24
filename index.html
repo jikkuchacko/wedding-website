@@ -1657,24 +1657,74 @@ const revealObserver = new IntersectionObserver(
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ── RSVP submit ───────────────────────────────────── */
+
+// PASTE YOUR DEPLOYED WEB APP URL HERE (ends in /exec)
+const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbylWTszGyBTfGBUleZN2Q1luHzffG76-zev8PuxK37t_7Y3sByJhB6FFDF40FVSxVYB/exec';
+
 function handleRsvp(e) {
   e.preventDefault();
+
+  const form = document.getElementById('rsvpForm');
+  const btn  = form.querySelector('.submit-btn');
+
   const data = {
-    firstName: document.getElementById('firstName').value,
-    lastName:  document.getElementById('lastName').value,
-    email:     document.getElementById('email').value,
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName:  document.getElementById('lastName').value.trim(),
+    email:     document.getElementById('email').value.trim(),
     attending: document.querySelector('input[name="attending"]:checked').value,
     plusOne:   document.querySelector('input[name="plusOne"]:checked').value,
     meal:      document.getElementById('meal').value,
-    message:   document.getElementById('message').value,
+    message:   document.getElementById('message').value.trim(),
     timestamp: new Date().toISOString(),
   };
-  console.log('RSVP submitted:', data);
 
+  // Disable the button so it can't be double-clicked.
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  // URL-encoded body avoids a CORS preflight request, which
+  // Apps Script web apps don't handle. The script reads these
+  // straight from e.parameter.
+  const body = new URLSearchParams(data).toString();
+
+  fetch(RSVP_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body,
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.result === 'success') {
+        showRsvpSuccess(res.updated);
+      } else {
+        throw new Error(res.message || 'Submission failed.');
+      }
+    })
+    .catch((err) => {
+      console.error('RSVP error:', err);
+      alert('Sorry — something went wrong sending your reply. '
+          + 'Please try again, or contact us directly.');
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    });
+}
+
+function showRsvpSuccess(wasUpdate) {
   document.getElementById('rsvpFormWrap').style.display = 'none';
   const success = document.getElementById('rsvpSuccess');
+
+  // Tailor the message slightly if the guest changed an existing reply.
+  if (wasUpdate) {
+    const p = success.querySelector('p');
+    if (p) p.textContent = 'Your reply has been updated.';
+  }
+
   success.classList.add('show');
-  setTimeout(() => success.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+  setTimeout(
+    () => success.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+    100
+  );
 }
 
 /* ── Mobile nav ────────────────────────────────────── */
