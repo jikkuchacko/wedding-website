@@ -697,7 +697,7 @@ section { position: relative; padding: 9rem 3rem; }
 /* ═══════════════════════════════════════
    GALLERY
 ═══════════════════════════════════════ */
-.gallery { background: var(--ivory); overflow: hidden; }
+.gallery { background: var(--ivory); overflow: hidden; padding-top: 1rem; }
 
 .gallery-bg-decor {
   position: absolute;
@@ -979,10 +979,13 @@ section { position: relative; padding: 9rem 3rem; }
 .form-field select option { background: var(--ivory-warm); color: var(--ink); }
 
 .rsvp-radio-group { display: flex; gap: 2.5rem; margin-top: 1rem; }
-.rsvp-radio {
-  display: flex;
+.form-field label.rsvp-radio {
+  display: inline-flex;
   align-items: center;
   gap: 0.8rem;
+  margin-bottom: 0;
+  text-transform: none;
+  letter-spacing: normal;
   cursor: pointer;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -994,22 +997,35 @@ section { position: relative; padding: 9rem 3rem; }
 
 .rsvp-radio input {
   appearance: none;
-  width: 16px; height: 16px;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 18px !important; height: 18px;
   border: 1px solid rgba(44, 26, 8, 0.25);
   border-radius: 50%;
-  position: relative;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   transition: border-color 0.3s ease;
   margin: 0;
+  padding: 0;
   flex-shrink: 0;
 }
 .rsvp-radio input:checked { border-color: var(--gold); }
 .rsvp-radio input:checked::after {
   content: '';
-  position: absolute;
-  inset: 3px;
+  width: 8px; height: 8px;
   background: var(--gold);
   border-radius: 50%;
+}
+.required { color: var(--gold-deep); margin-left: 0.15rem; }
+.meal-note {
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.4rem;
 }
 
 .submit-btn {
@@ -1155,8 +1171,8 @@ footer {
   }
   .nav-toggle { display: block; }
 
-  .hero { padding: 0; min-height: 0; aspect-ratio: 1240 / 1748; }
-  .hero-bg { top: 0; background-size: 100% auto; background-position: center top; background-color: var(--warm-white); }
+  .hero { padding: 0; min-height: 0; display: block; }
+  .hero-bg { position: relative; top: 0; width: 100%; aspect-ratio: 1240 / 1748; background-size: 100% 100%; background-position: center top; background-color: var(--warm-white); margin-top: 78px; }
   .hero::before, .hero::after { display: none; }
   .hero-names { font-size: clamp(4.5rem, 20vw, 7rem); }
   .hero-meta { flex-direction: column; gap: 0.6rem; padding: 1.2rem 1.8rem; border-radius: 20px; }
@@ -1178,6 +1194,7 @@ footer {
   .rsvp-form-wrap { padding: 2rem 1.5rem; }
   .form-row { grid-template-columns: 1fr; gap: 1.5rem; }
   .rsvp-radio-group { flex-direction: column; gap: 1rem; }
+  .rsvp-radio-group.rsvp-radio-group--inline { flex-direction: row; gap: 2.5rem; }
 }
 
 @media (max-width: 480px) {
@@ -1291,7 +1308,6 @@ footer {
 
 <!-- NAV -->
 <nav id="mainNav">
-  <div class="nav-mark">P <span class="amp">&amp;</span> J</div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#details">The Day</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -1398,16 +1414,7 @@ footer {
   <svg class="gallery-bg-decor" aria-hidden="true"><use href="#crystal"/></svg>
 
   <div class="reveal">
-    <div class="section-mark">Moments</div>
-    <h2 class="section-title">Our <em>story</em></h2>
-    <div class="ornament" aria-hidden="true">
-      <span class="ornament-line ornament-line-l"></span>
-      <span class="ornament-dot"></span>
-      <span class="ornament-diamond"></span>
-      <span class="ornament-dot"></span>
-      <span class="ornament-line ornament-line-r"></span>
-    </div>
-    <p class="section-subtitle" style="margin-top: -1.5rem;">A small collection of our favourite memories</p>
+    <div class="section-mark">Gallery</div>
   </div>
 
   <div class="gallery-grid reveal">
@@ -1470,7 +1477,7 @@ footer {
         surrounded by the people who matter most.
       </p>
       <div class="venue-address">
-        The Istana Ballroom, Level 3, KINEX<br>
+        The Istana 3 Ballroom, Level 3, KINEX<br>
         11 Tanjong Katong Rd<br>
         Singapore 437157
       </div>
@@ -1508,26 +1515,26 @@ footer {
     <h2 class="section-title">Will you <em>join us?</em></h2>
     <p class="section-subtitle">
       Your presence would mean the world.<br>
-      Please respond by 15 January 2026.
+      Please respond by 15 July 2026.
     </p>
   </div>
 
   <div class="rsvp-form-wrap reveal" id="rsvpFormWrap">
-    <form class="rsvp-form" id="rsvpForm" onsubmit="handleRsvp(event)" novalidate>
+    <form class="rsvp-form" id="rsvpForm" onsubmit="handleRsvp(event)">
       <div class="form-row">
         <div class="form-field">
-          <label for="firstName">First Name</label>
+          <label for="firstName">First Name <span class="required">*</span></label>
           <input type="text" id="firstName" placeholder="Your given name" required autocomplete="given-name">
         </div>
         <div class="form-field">
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Last Name <span class="required">*</span></label>
           <input type="text" id="lastName" placeholder="Your family name" required autocomplete="family-name">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-field full">
-          <label for="email">Email</label>
+          <label for="email">Email <span class="required">*</span></label>
           <input type="email" id="email" placeholder="So we can stay in touch" required autocomplete="email">
         </div>
       </div>
@@ -1538,33 +1545,38 @@ footer {
           <div class="rsvp-radio-group">
             <label class="rsvp-radio">
               <input type="radio" name="attending" value="yes" checked>
-              <span>Joyfully accepts</span>
+              <span>Yes, I will be attending</span>
             </label>
             <label class="rsvp-radio">
               <input type="radio" name="attending" value="no">
-              <span>Regretfully declines</span>
+              <span>No, I can&rsquo;t make it</span>
             </label>
           </div>
         </div>
       </div>
 
       <div class="form-row">
-        <div class="form-field">
-          <label for="guests">Number of guests</label>
-          <select id="guests">
-            <option value="1">Just me</option>
-            <option value="2">Two of us</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-          </select>
+        <div class="form-field full">
+          <label>Are you bringing a +1?</label>
+          <div class="rsvp-radio-group rsvp-radio-group--inline">
+            <label class="rsvp-radio">
+              <input type="radio" name="plusOne" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="rsvp-radio">
+              <input type="radio" name="plusOne" value="no" checked>
+              <span>No</span>
+            </label>
+          </div>
         </div>
-        <div class="form-field">
-          <label for="meal">Meal preference</label>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field full">
+          <label for="meal">Meal preference <span class="meal-note">(All food is Halal Certified)</span></label>
           <select id="meal">
             <option value="standard">Standard</option>
             <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="gluten-free">Gluten-free</option>
           </select>
         </div>
       </div>
@@ -1572,7 +1584,7 @@ footer {
       <div class="form-row">
         <div class="form-field full">
           <label for="message">A note to the couple (optional)</label>
-          <textarea id="message" placeholder="Something kind, something funny, anything at all"></textarea>
+          <textarea id="message" placeholder="Special requests, something funny, anything at all"></textarea>
         </div>
       </div>
 
@@ -1588,8 +1600,7 @@ footer {
     </div>
     <h3>Thank you</h3>
     <p>
-      Your reply has been received with joy.<br>
-      We can&rsquo;t wait to celebrate with you.
+      Your reply has been received.
     </p>
   </div>
 </section>
@@ -1653,7 +1664,7 @@ function handleRsvp(e) {
     lastName:  document.getElementById('lastName').value,
     email:     document.getElementById('email').value,
     attending: document.querySelector('input[name="attending"]:checked').value,
-    guests:    document.getElementById('guests').value,
+    plusOne:   document.querySelector('input[name="plusOne"]:checked').value,
     meal:      document.getElementById('meal').value,
     message:   document.getElementById('message').value,
     timestamp: new Date().toISOString(),
