@@ -558,6 +558,7 @@ section { position: relative; padding: 9rem 3rem; }
 .details {
   background: var(--champagne);
   overflow: hidden;
+  padding-top: 4rem;
 }
 
 /* Faint radial warmth at center */
@@ -711,7 +712,7 @@ section { position: relative; padding: 9rem 3rem; }
 /* ═══════════════════════════════════════
    GALLERY
 ═══════════════════════════════════════ */
-.gallery { background: var(--ivory); overflow: hidden; padding-top: 1rem; }
+.gallery { background: var(--ivory); overflow: hidden; padding-top: 4rem; }
 
 .gallery-bg-decor {
   position: absolute;
@@ -793,7 +794,7 @@ section { position: relative; padding: 9rem 3rem; }
 /* ═══════════════════════════════════════
    VENUE
 ═══════════════════════════════════════ */
-.venue { background: var(--warm-white); overflow: hidden; }
+.venue { background: var(--warm-white); overflow: hidden; padding-top: 4rem; }
 
 .venue-decor {
   position: absolute;
@@ -907,6 +908,7 @@ section { position: relative; padding: 9rem 3rem; }
 .rsvp {
   background: var(--champagne-deep);
   overflow: hidden;
+  padding-top: 4rem;
 }
 
 /* Warm glow background */
@@ -1093,6 +1095,118 @@ section { position: relative; padding: 9rem 3rem; }
   line-height: 1.72;
 }
 
+/* ── RSVP sending overlay ──────────────────────────── */
+.rsvp-sending {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at center, rgba(254, 253, 248, 0.96) 0%, rgba(243, 235, 216, 0.96) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rsvp-sending.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.rsvp-sending-card {
+  text-align: center;
+  padding: 3.5rem 3rem;
+  max-width: 440px;
+  background: rgba(254, 253, 248, 0.85);
+  border: 1px solid rgba(201, 161, 85, 0.35);
+  box-shadow:
+    0 20px 60px rgba(28, 15, 4, 0.12),
+    0 0 80px rgba(201, 161, 85, 0.15);
+  position: relative;
+}
+.rsvp-sending-card::before,
+.rsvp-sending-card::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--gold);
+  opacity: 0.55;
+}
+.rsvp-sending-card::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+.rsvp-sending-card::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+.rsvp-sending-ring {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.8rem;
+  border-radius: 50%;
+  border: 2px solid rgba(201, 161, 85, 0.18);
+  border-top-color: var(--gold);
+  border-right-color: var(--gold-light);
+  animation: rsvpSpin 1.4s linear infinite;
+  box-shadow: 0 0 24px rgba(201, 161, 85, 0.25);
+}
+@keyframes rsvpSpin {
+  to { transform: rotate(360deg); }
+}
+.rsvp-sending-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.6rem;
+  color: var(--gold-deep);
+  margin-bottom: 0.6rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.rsvp-sending-sub {
+  font-family: 'Cormorant Infant', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+.rsvp-sending-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 0 auto 1.2rem;
+  opacity: 0.7;
+}
+.rsvp-sending-divider span {
+  display: block;
+  height: 1px;
+  width: 50px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.rsvp-sending-divider svg {
+  color: var(--gold);
+  opacity: 0.8;
+}
+.rsvp-sending-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-sending-ring { animation: none; }
+  .rsvp-sending { transition: none; }
+}
+
 /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
@@ -1165,6 +1279,10 @@ footer {
   opacity: 0;
   margin-bottom: 0;
   pointer-events: none;
+}
+
+.form-field.field-collapsed {
+  display: none;
 }
 
 .field-error {
@@ -1242,6 +1360,7 @@ footer {
   .scroll-cue { display: none; }
 
   section { padding: 5rem 1.5rem; }
+  .details { padding-top: 2.5rem; }
 
   .details-grid { grid-template-columns: 1fr; gap: 1.2rem; }
   .details-countdown { gap: 1.2rem; }
@@ -1398,15 +1517,6 @@ footer {
 
   <div class="reveal">
     <div class="section-mark">The Day</div>
-    <h2 class="section-title">When we <em>say I do</em></h2>
-    <div class="ornament" aria-hidden="true">
-      <span class="ornament-line ornament-line-l"></span>
-      <span class="ornament-dot"></span>
-      <span class="ornament-diamond"></span>
-      <span class="ornament-dot"></span>
-      <span class="ornament-line ornament-line-r"></span>
-    </div>
-    <p class="section-subtitle" style="margin-top: -1.5rem;">Mark your calendar for a day of love, joy, and celebration</p>
   </div>
 
   <div class="details-grid">
@@ -1494,21 +1604,6 @@ footer {
       <div class="gallery-overlay" aria-hidden="true"></div>
       <span class="gallery-num" aria-hidden="true"></span>
     </div>
-    <!-- <div class="gallery-item">
-      <img src="photos/photo4.jpg" alt="A moment together" loading="lazy">
-      <div class="gallery-overlay" aria-hidden="true"></div>
-      <span class="gallery-num" aria-hidden="true"></span>
-    </div>
-    <div class="gallery-item">
-      <img src="photos/photo5.jpg" alt="A moment together" loading="lazy">
-      <div class="gallery-overlay" aria-hidden="true"></div>
-      <span class="gallery-num" aria-hidden="true"></span>
-    </div>
-    <div class="gallery-item">
-      <img src="photos/photo6.jpg" alt="A moment together" loading="lazy">
-      <div class="gallery-overlay" aria-hidden="true"></div>
-      <span class="gallery-num" aria-hidden="true"></span>
-    </div> -->
   </div>
   <p class="gallery-note reveal">More memories to be made &mdash; together</p>
 </section>
@@ -1520,14 +1615,6 @@ footer {
 
   <div class="reveal">
     <div class="section-mark">The Place</div>
-    <h2 class="section-title">Where we <em>celebrate</em></h2>
-    <div class="ornament" style="margin-bottom: 5rem;" aria-hidden="true">
-      <span class="ornament-line ornament-line-l"></span>
-      <span class="ornament-dot"></span>
-      <span class="ornament-diamond"></span>
-      <span class="ornament-dot"></span>
-      <span class="ornament-line ornament-line-r"></span>
-    </div>
   </div>
 
   <div class="venue-content reveal">
@@ -1646,6 +1733,32 @@ footer {
         </div>
       </div>
 
+      <div class="form-row collapsible collapsed" id="kidsRow">
+        <div class="form-field" id="kidsField">
+          <label>Are you bringing children?</label>
+          <div class="rsvp-radio-group rsvp-radio-group--inline">
+            <label class="rsvp-radio">
+              <input type="radio" name="kids" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="rsvp-radio">
+              <input type="radio" name="kids" value="no">
+              <span>No</span>
+            </label>
+          </div>
+          <span class="field-error" id="kidsError">Please let us know about children.</span>
+        </div>
+        <div class="form-field" id="kidsCountField">
+          <label for="kidsCount">How many children?</label>
+          <select id="kidsCount">
+            <option value="" selected disabled>Please select…</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <span class="field-error" id="kidsCountError">Please enter how many children.</span>
+        </div>
+      </div>
+
       <div class="form-row">
         <div class="form-field full">
           <label for="message">A note to the couple (optional)</label>
@@ -1667,6 +1780,20 @@ footer {
     <p>
       Your reply has been received.
     </p>
+  </div>
+
+  <div class="rsvp-sending" id="rsvpSending" role="status" aria-live="polite" aria-hidden="true">
+    <div class="rsvp-sending-card">
+      <div class="rsvp-sending-ring" aria-hidden="true"></div>
+      <div class="rsvp-sending-title">Sending your reply</div>
+      <div class="rsvp-sending-divider" aria-hidden="true">
+        <span></span>
+        <svg width="10" height="16" viewBox="0 0 60 110"><use href="#crystal"/></svg>
+        <span></span>
+      </div>
+      <p class="rsvp-sending-sub">A moment, please — we're delivering your message to the couple.</p>
+      <div class="rsvp-sending-note">Please do not close this window</div>
+    </div>
   </div>
 </section>
 
@@ -1745,13 +1872,26 @@ function handleRsvp(e) {
   if (attending === 'yes') {
     const plusOneMissing = !plusOneEl;
     const mealMissing    = !mealEl.value;
+    const kidsEl         = document.querySelector('input[name="kids"]:checked');
+    const kidsMissing    = !kidsEl;
+    const kidsCountEl    = document.getElementById('kidsCount');
+    const kidsCountMissing =
+      kidsEl && kidsEl.value === 'yes' && !(parseInt(kidsCountEl.value, 10) > 0);
+
     setFieldError('plusOneField', 'plusOneError', plusOneMissing);
     setFieldError('mealField',    'mealError',    mealMissing);
+    setFieldError('kidsField',    'kidsError',    kidsMissing);
+    setFieldError('kidsCountField','kidsCountError', kidsCountMissing);
+
     if (plusOneMissing) firstInvalid = firstInvalid || document.getElementById('plusOneField');
     if (mealMissing)    firstInvalid = firstInvalid || document.getElementById('mealField');
+    if (kidsMissing)    firstInvalid = firstInvalid || document.getElementById('kidsField');
+    if (kidsCountMissing) firstInvalid = firstInvalid || document.getElementById('kidsCountField');
   } else {
     setFieldError('plusOneField', 'plusOneError', false);
     setFieldError('mealField',    'mealError',    false);
+    setFieldError('kidsField',    'kidsError',    false);
+    setFieldError('kidsCountField','kidsCountError', false);
   }
 
   if (firstInvalid) {
@@ -1759,6 +1899,7 @@ function handleRsvp(e) {
     return;
   }
 
+  const kidsEl = document.querySelector('input[name="kids"]:checked');
   const data = {
     firstName: document.getElementById('firstName').value.trim(),
     lastName:  document.getElementById('lastName').value.trim(),
@@ -1766,6 +1907,10 @@ function handleRsvp(e) {
     attending: attending,
     plusOne:   attending === 'yes' && plusOneEl ? plusOneEl.value : '',
     meal:      attending === 'yes' ? mealEl.value : '',
+    kids:      attending === 'yes' && kidsEl ? kidsEl.value : '',
+    kidsCount: attending === 'yes' && kidsEl && kidsEl.value === 'yes'
+                 ? (parseInt(document.getElementById('kidsCount').value, 10) || 0)
+                 : 0,
     message:   document.getElementById('message').value.trim(),
     timestamp: new Date().toISOString(),
   };
@@ -1774,6 +1919,16 @@ function handleRsvp(e) {
   const originalLabel = btn.textContent;
   btn.disabled = true;
   btn.textContent = 'Sending…';
+
+  // Show the luxurious "sending" overlay.
+  const sendingOverlay = document.getElementById('rsvpSending');
+  sendingOverlay.classList.add('show');
+  sendingOverlay.setAttribute('aria-hidden', 'false');
+
+  function hideSendingOverlay() {
+    sendingOverlay.classList.remove('show');
+    sendingOverlay.setAttribute('aria-hidden', 'true');
+  }
 
   // URL-encoded body avoids a CORS preflight request, which
   // Apps Script web apps don't handle. The script reads these
@@ -1788,6 +1943,7 @@ function handleRsvp(e) {
     .then((res) => res.json())
     .then((res) => {
       if (res.result === 'success') {
+        hideSendingOverlay();
         showRsvpSuccess(res.updated);
       } else {
         throw new Error(res.message || 'Submission failed.');
@@ -1795,6 +1951,7 @@ function handleRsvp(e) {
     })
     .catch((err) => {
       console.error('RSVP error:', err);
+      hideSendingOverlay();
       alert('Sorry — something went wrong sending your reply. '
           + 'Please try again, or contact us directly.');
       btn.disabled = false;
@@ -1831,7 +1988,9 @@ function setFieldError(fieldId, errorId, isError) {
 (function () {
   const plusOneRow = document.getElementById('plusOneRow');
   const mealRow    = document.getElementById('mealRow');
-  const attendingRadios = document.querySelectorAll('input[name="attending"]');
+  const kidsRow    = document.getElementById('kidsRow');
+  const kidsCountField   = document.getElementById('kidsCountField');
+  const attendingRadios  = document.querySelectorAll('input[name="attending"]');
 
   function setHidden(row, hidden) {
     row.classList.toggle('collapsed', hidden);
@@ -1844,16 +2003,27 @@ function setFieldError(fieldId, errorId, isError) {
     }
   }
 
+  function syncKidsCount() {
+    const kidsEl = document.querySelector('input[name="kids"]:checked');
+    const showCount = kidsEl && kidsEl.value === 'yes';
+    kidsCountField.classList.toggle('field-collapsed', !showCount);
+    if (!showCount) setFieldError('kidsCountField', 'kidsCountError', false);
+  }
+
   function syncConditionalFields() {
     const selected = document.querySelector('input[name="attending"]:checked');
     const showExtras = selected && selected.value === 'yes';
     setHidden(plusOneRow, !showExtras);
     setHidden(mealRow,    !showExtras);
+    setHidden(kidsRow,    !showExtras);
     if (selected) setFieldError('attendingField', 'attendingError', false);
     if (!showExtras) {
       setFieldError('plusOneField', 'plusOneError', false);
       setFieldError('mealField',    'mealError',    false);
+      setFieldError('kidsField',    'kidsError',    false);
+      setFieldError('kidsCountField','kidsCountError', false);
     }
+    syncKidsCount();
   }
 
   attendingRadios.forEach(r => r.addEventListener('change', syncConditionalFields));
@@ -1861,6 +2031,15 @@ function setFieldError(fieldId, errorId, isError) {
   document.querySelectorAll('input[name="plusOne"]').forEach(r =>
     r.addEventListener('change', () => setFieldError('plusOneField', 'plusOneError', false))
   );
+  document.querySelectorAll('input[name="kids"]').forEach(r =>
+    r.addEventListener('change', () => {
+      setFieldError('kidsField', 'kidsError', false);
+      syncKidsCount();
+    })
+  );
+  document.getElementById('kidsCount').addEventListener('change', (e) => {
+    if (parseInt(e.target.value, 10) > 0) setFieldError('kidsCountField', 'kidsCountError', false);
+  });
   document.getElementById('meal').addEventListener('change', (e) => {
     if (e.target.value) setFieldError('mealField', 'mealError', false);
   });
